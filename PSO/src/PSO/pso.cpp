@@ -8,14 +8,21 @@ Particle::Particle(size_t dimensions)
 {
 }
 
-PSO::PSO()
+PSO::PSO(const std::vector<std::function<double(const std::vector<double>&)>>& _equations,
+         const std::vector<double>& _target_position)
     : num_particles(100), 
     max_iterations(100), 
     w(0.7), 
     c1(1.5),
-    c2(1.5)
+    c2(1.5),
+    target_position(_target_position),
+    dimensions(_equations.size()),
+    particles(num_particles, Particle(_equations.size())),
+    equations(_equations)
 {
 }
+
+PSO::~PSO() = default;
 
 void PSO::updateParameters(size_t num_particles, unsigned int max_iterations, double w, double c1, double c2) 
 {
