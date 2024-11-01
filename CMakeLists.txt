@@ -4,7 +4,7 @@ project(AlgorithmCpp)
 
 option(COMPILE_PSO "Option to compile PSO project" ON)
 if(COMPILE_PSO)
-add_subdirectory(PSO)
+    add_subdirectory(PSO)
 endif()
 
 file(GLOB_RECURSE ALL_SOURCE_FILES
