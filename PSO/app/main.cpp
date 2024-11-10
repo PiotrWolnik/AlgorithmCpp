@@ -14,6 +14,7 @@ int main()
     };
 
     PSO pso(equations, targetPosition);
+    pso.run();
 
     std::cout << "PSO_app" << std::endl;
     return EXIT_SUCCESS;

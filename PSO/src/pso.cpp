@@ -45,6 +45,34 @@ void PSO::initializeParticles()
     }
 }
 
+void PSO::updateParticle(Particle& particle)
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
+
+    for (size_t i = 0; i < dimension; ++i) 
+    {
+        double r1 = dist(gen);
+        double r2 = dist(gen);
+
+        particle.velocity[i] = w * particle.velocity[i]
+                             + c1 * r1 * (particle.bestPosition[i] - particle.position[i])
+                             + c2 * r2 * (targetPosition[i] - particle.position[i]);
+                             
+        particle.position[i] += particle.velocity[i];
+
+        if (particle.position[i] < positionLimits[i].first) 
+        {
+            particle.position[i] = positionLimits[i].first;
+        }
+        else if (particle.position[i] > positionLimits[i].second) 
+        {
+            particle.position[i] = positionLimits[i].second;
+        }
+    }
+}
+
 double PSO::objectiveFunction(const std::vector<double>& position)
 {
     double distance = 0.0;

@@ -39,6 +39,7 @@ public:
         const std::vector<std::pair<double, double>>& positionLimits = {});
     ~PSO() = default;
 
+    void run();
     void updateParameters(size_t particleCount, unsigned int N_max, double w, double c1, double c2);
     void setPositionLimits(const std::vector<std::pair<double, double>>& limits);
 };
